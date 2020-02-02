@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class CameraMovement : MonoBehaviour
     public Vector2 maxPosition;
     public Vector2 minPosition;
 
+    public string countdown;
+    public GameObject text;
+    public Text showText;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Starting object script...");
+        StartCoroutine(countdownCo());
     }
 
     // Update is called once per frame
@@ -25,5 +31,23 @@ public class CameraMovement : MonoBehaviour
             targetPosition.y = Mathf.Clamp(targetPosition.y, minPosition.y, maxPosition.y);
             transform.position = Vector3.Lerp(transform.position, targetPosition, smoothing);
         }
+    }
+
+    private IEnumerator countdownCo() 
+    {
+        text.SetActive(true);
+        countdown = "3...";
+        showText.text = countdown;
+        yield return new WaitForSeconds(1f);
+        countdown = "2...";
+        showText.text = countdown;
+        yield return new WaitForSeconds(1f);
+        countdown = "1...";
+        showText.text = countdown;
+        yield return new WaitForSeconds(1f);
+        countdown = "Fight!";
+        showText.text = countdown;
+        yield return new WaitForSeconds(1f);
+        text.SetActive(false);
     }
 }
