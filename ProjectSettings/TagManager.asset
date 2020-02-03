@@ -48,3 +48,6 @@ TagManager:
   - name: Knight
     uniqueID: 66046441
     locked: 0
+  - name: Spell
+    uniqueID: 2787101265
+    locked: 0

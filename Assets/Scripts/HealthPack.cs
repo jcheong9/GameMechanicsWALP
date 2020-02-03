@@ -6,7 +6,7 @@ using System;
 public class HealthPack : MonoBehaviour
 {
 
-    bool ObjectIsActive;
+    //bool ObjectIsActive;
 
     // Start is called before the first frame update
     void Start()
@@ -24,17 +24,17 @@ public class HealthPack : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            // TODO: Get the object which collided with it, then heal it 
+            // TODO: If ObjectIsActive, get the object which collided with it, then heal it 
             StartCoroutine( Replenish() );
         }
     }
 
     IEnumerator Replenish() {
-        ObjectIsActive = false;
+        //ObjectIsActive = false;
         gameObject.GetComponent<Renderer>().enabled = false;
         yield return new WaitForSeconds(15f);
         gameObject.GetComponent<Renderer>().enabled = true;
-        ObjectIsActive = true;
+        //ObjectIsActive = true;
     }
     
 
