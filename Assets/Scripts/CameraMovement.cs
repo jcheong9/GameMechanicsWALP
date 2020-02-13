@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour
 {
-
-    public Transform target;
+	public Player myPlayer;
+    private Transform target;
     public float smoothing;
     public Vector2 maxPosition;
     public Vector2 minPosition;
@@ -18,6 +18,7 @@ public class CameraMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		target = myPlayer.myCharacter.transform;
         Debug.Log("Starting object script...");
         StartCoroutine(countdownCo());
     }
