@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour
+public class Chest : PerishableObject
 {
 
     private Animator anim;
@@ -10,6 +10,7 @@ public class Chest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		health = 100;
         anim = GetComponent<Animator>();    
     }
 
@@ -18,13 +19,16 @@ public class Chest : MonoBehaviour
     {
         
     }
+	public override void GetDamaged(int damage)
+	{
+		health = health - damage;
+		anim.SetInteger("Damage", anim.GetInteger("Damage") + damage);
+		Debug.Log("got damage");
+		if (anim.GetInteger("Damage") >= 100)
+		{
+			health = 0;
+			gameObject.SetActive(false);
+		}
+	}
 
-    public void Damage()
-    {
-        anim.SetInteger("Damage", anim.GetInteger("Damage") + 5);
-        Debug.Log(anim.GetInteger("Damage"));
-        if(anim.GetInteger("Damage") > 100) {
-            gameObject.SetActive(false);
-        }
-    }
 }

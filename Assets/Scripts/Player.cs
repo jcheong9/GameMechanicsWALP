@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	// Start is called before the first frame update
-	public PlayerMovement myCharacter;
+	public Character myCharacter;
     void Start()
     {
         
@@ -14,8 +14,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		CharacterController();
+	}
+	public void CharacterController()
+	{
 		myCharacter.setPositionX(Input.GetAxisRaw("Horizontal"));
 		myCharacter.setPositionY(Input.GetAxisRaw("Vertical"));
-
+		if (Input.GetButtonDown("attack"))
+		{
+			myCharacter.setState(ObjectState.attack);
+		}
 	}
 }

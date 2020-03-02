@@ -20,7 +20,7 @@ public class CameraMovement : MonoBehaviour
     {
 		target = myPlayer.myCharacter.transform;
         Debug.Log("Starting object script...");
-        StartCoroutine(countdownCo());
+       // StartCoroutine(countdownCo());
     }
 
     // Update is called once per frame
