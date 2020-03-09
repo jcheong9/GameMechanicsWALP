@@ -9,9 +9,10 @@ public class Knight : Character
     {
 		myState = ObjectState.idle;
 		mySR = GetComponent<SpriteRenderer>();
-		animator = GetComponent<Animator>();
+		anim = GetComponent<Animator>();
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myState = ObjectState.idle;
+		damage = 10;
 		speed = 4;
 	}
 
@@ -27,10 +28,10 @@ public class Knight : Character
 
 	public IEnumerator hit()
 	{
-		animator.SetBool("attacking", true);
+		anim.SetBool("attacking", true);
 		yield return null;
-		animator.SetBool("attacking", false);
-		yield return new WaitForSeconds(.3f);
+		anim.SetBool("attacking", false);
+		yield return new WaitForSeconds(.2f);
 		myState = ObjectState.idle;
 	}
 }

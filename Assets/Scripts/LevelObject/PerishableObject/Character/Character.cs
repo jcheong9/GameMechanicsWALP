@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Character : PerishableObject
 {
-	protected int id;
 	protected int mp;
 	protected float speed;
 	protected int damage;
@@ -12,9 +11,10 @@ public class Character : PerishableObject
 	// Start is called before the first frame update
 	void Start()
     {
+		id = 1;
 		myState = ObjectState.idle;
 		mySR = GetComponent<SpriteRenderer>();
-		animator = GetComponent<Animator>();
+		anim = GetComponent<Animator>();
 		myRigidbody = GetComponent<Rigidbody2D>();
 		myState = ObjectState.idle;
 		speed = 4;
@@ -32,24 +32,25 @@ public class Character : PerishableObject
 		if (position != Vector3.zero)
 		{
 			MoveCharacter();
-			animator.SetFloat("moveX", position.x);
-			animator.SetFloat("moveY", position.y);
-			animator.SetBool("moving", true);
+			anim.SetFloat("moveX", position.x);
+			anim.SetFloat("moveY", position.y);
+			anim.SetBool("moving", true);
 		}
 		else
 		{
-			animator.SetBool("moving", false);
+			anim.SetBool("moving", false);
 		}
 	}
-	public void GetDamaged(int damage)
-	{
-		health = health - damage;
-	}
+
 	void MoveCharacter()
 	{
 		position.Normalize();
 		myRigidbody.MovePosition(
 			transform.position + position * speed * Time.deltaTime
 		);
+	}
+	public int getDamage()
+	{
+		return damage;
 	}
 }

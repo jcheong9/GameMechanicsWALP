@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 	{
 		myCharacter.setPositionX(Input.GetAxisRaw("Horizontal"));
 		myCharacter.setPositionY(Input.GetAxisRaw("Vertical"));
-		if (Input.GetButtonDown("attack"))
+		if (Input.GetButtonDown("attack") || Input.GetMouseButtonDown(0))
 		{
 			myCharacter.setState(ObjectState.attack);
 		}
